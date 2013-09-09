@@ -14,8 +14,8 @@
 }
 
 \usage{
-\S4method{parseCSQToGRanges}{character}(x, VCFRowID=TRUE, ...)
-\S4method{parseCSQToGRanges}{VCF}(x, VCFRowID=TRUE, ...)
+\S4method{parseCSQToGRanges}{character}(x, VCFRowID=character(), ...)
+\S4method{parseCSQToGRanges}{VCF}(x, VCFRowID=character(), ...)
 }
 
 \arguments{
@@ -23,11 +23,16 @@
     The \code{character} name of a vcf file on disk or a \code{VCF} object
   }
   \item{VCFRowID}{
-    \code{logical}. Include a metadata column that maps the rows of
-    the expanded consequences back to the rows of the \code{VCF} object. 
+    A \code{character} vector of rownames from the original VCF. 
+    When provided, the result includes a metadata column named 
+    \sQuote{VCFRowID} which maps the result back to the row 
+    (variant) in the original VCF.
+
+    When \code{VCFRowID} is not provided no \sQuote{VCFRowID}
+    column is included. 
   }
   \item{\dots}{
-    Arguments passed to other methods.
+    Arguments passed to other methods. Currently not used.
   }
 }
 
@@ -40,6 +45,10 @@
       \code{GRanges} object that is expanded to match the dimension 
       of the 'CSQ' data. Because each variant can have multiple 
       matches, the ranges in the \code{GRanges} are repeated.
+
+      If rownames from the original VCF are provided as 
+      \code{VCFRowID} a metadata column is included in the result
+      that maps back to the row (variant) in the original VCF.
     }
   }
 }
@@ -65,13 +74,14 @@
 
 \examples{
 file <- system.file("extdata", "ex2.vcf", package="VariantAnnotation") 
-vcf <- ensemblVEP(file, param=VEPParam(output=c(vcf=TRUE)))
+vep <- ensemblVEP(file, param=VEPParam(dataformat=c(vcf=TRUE)))
 
 ## The returned 'CSQ' data are unparsed.
-vcf$CSQ
+info(vep)$CSQ
 
-## Parse the data into a GRanges.
-csq <- parseCSQToGRanges(vcf)
+## Parse into a GRanges and include the 'VCFRowID' column.
+vcf <- readVcf(file, "hg19")
+csq <- parseCSQToGRanges(vep, VCFRowID=rownames(vcf))
 csq[1:4]
 }
 

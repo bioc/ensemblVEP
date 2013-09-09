@@ -6,8 +6,12 @@ setClass("VEPParam",
     representation(
         basic="list",
         input="list",
-        database="list",
+        cache="list",
         output="list",
+        identifier="list",
+        colocatedVariants="list",
+        dataformat="list",
         filterqc="list",
-        cache="list")
+        database="list",
+        advanced="list")
 )
