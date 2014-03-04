@@ -405,7 +405,7 @@ filterqcOpts <- function(check_ref=logical(1), coding_only=logical(1),
          allow_non_variant=allow_non_variant) 
 }
 
-databaseOpts <- function(database=TRUE, host="useastdb.ensembl.org", 
+databaseOpts <- function(database=TRUE, host="ensembldb.ensembl.org", 
                          user=character(), password=character(), 
                          port=numeric(), genomes=logical(1), 
                          refseq=logical(1), db_version=numeric(), 
