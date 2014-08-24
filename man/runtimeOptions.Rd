@@ -15,16 +15,12 @@
   runtime options and is a condensed version of what is listed on the
   Ensembl web site:
 
-  \url{http://www.ensembl.org/info/docs/variation/vep/vep_script.html#running}
+  \url{http://uswest.ensembl.org/info/docs/tools/vep/script/vep_options.html}
 
   Runtime options for archived versions can be found on the corresponding 
   archive page.
 
-  \url{http://uswest.ensembl.org/info/website/archives/index.html}
-
-  For example, version 67 of the VEP script and data are found here:
-
-  \url{http://may2012.archive.ensembl.org/info/docs/variation/vep/vep_script.html}
+  \url{http://useast.ensembl.org/info/website/archives/index.html}
 }
 
 \section{Runtime options: }{
@@ -175,9 +171,7 @@
         \item{fields:} \code{character}, default fields are
           'Uploaded_variation', 'Location', 'Allele', 'Gene', 'Feature', 
           'Feature_type', 'Consequence', 'cDNA_position', 'CDS_position', 
-          'Protein_position', 'Amino_acids', 'Codons' and 'Extra'. See
-          \url{http://www.ensembl.org/info/docs/variation/vep/vep_formats.html#sv}
-          for details. 
+          'Protein_position', 'Amino_acids', 'Codons' and 'Extra'.
         \item{convert:} \code{character}, default \code{character()}; 
           converts input file to one of 'ensembl', 'vcf', or 'pileup'
       }
